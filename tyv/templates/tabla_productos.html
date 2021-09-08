@@ -1,0 +1,51 @@
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        FOTO
+                    </th>
+                    <th>
+                        NOMBRE
+                    </th>
+                    <th>
+                        DESCRIPCIÓN
+                    </th>
+                    <th>
+                        PRECIO
+                    </th>
+                    <th>
+                        CATEGORIA
+                    </th>
+                    <th>
+                        STOCK
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        <img width="100px" src="fotos/{{producto[5]}}" alt="{{producto[1]}}">
+                    </td>
+                    <td>
+                        {{producto[1]}}
+                    </td>
+                    <td>
+                        {{producto[2]}}
+                    </td>
+                    <td>
+                        {{producto[3]}}
+                    </td>
+                    <td>
+                        {{producto[4]}}
+                    </td>
+                    <td>
+                        {{producto[6]}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    Pañalera T & V
+    {% endblock %}
+
+    {% block head %}
+    
+    {% endblock %}
+
+    {% block header %}
+    PAÑALERA T & V
+    {% endblock %}
+
+
+    {% block header2 %}
+    
+    {% endblock %}
+
+    {% block main %}
+    <h2>Destacados de la semana</h2>
+    <div>
+        {% for producto in semanal %}
+        <img width="250vw" src="fotos/{{producto[5]}}" alt="{{producto[1]}}">
+        <h4>{{producto[1]}}</h4>
+        <p>{{producto[2]}}</p>
+        {{producto[3]}}
+        {% endfor %}
+    </div>
+    <div>
+        {% include 'tabla_productos.html' %}
+    </div>
+    {% endblock %}

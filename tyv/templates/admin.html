@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+    {% block titulo %}
+        Administración
+    {% endblock %}
+
+    {% block head %}
+    
+    {% endblock %}
+
+    {% block header %}
+    ADMINISTRACIÓN
+    {% endblock %}
+
+
+    {% block header2 %}
+    
+    {% endblock %}
+
+    {% block main %}
+    <button><a href="/altas">Cargar producto</a></button>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        FOTO
+                    </th>
+                    <th>
+                        NOMBRE
+                    </th>
+                    <th>
+                        DESCRIPCIÓN
+                    </th>
+                    <th>
+                        PRECIO
+                    </th>
+                    <th>
+                        CATEGORIA
+                    </th>
+                    <th>
+                        STOCK
+                    </th>
+                    <th>
+                        ACCIÓNES
+                    </th>
+                    <th>
+                        DESTACADO
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        <img width="100px" src="fotos/{{producto[5]}}" alt="">
+                    </td>
+                    <td>
+                        {{producto[1]}}
+                    </td>
+                    <td>
+                        {{producto[2]}}
+                    </td>
+                    <td>
+                        {{producto[3]}}
+                    </td>
+                    <td>
+                        {{producto[4]}}
+                    </td>
+                    <td>
+                        {{producto[6]}}
+                    </td>
+                    <td>
+                        <a href="/edit/{{producto[0]}}"><button>Editar</button></a> <a
+                        onclick="return confirm('¿Desea borrar {{producto[1]}}?')"
+                        href="/destroy/{{producto[0]}}"><button>Eliminar</button></a>
+                    </td>
+                    <td>
+                        <input type="radio" name="{{producto[0]}}" id="no" value="0" form="destacados">
+                        <label for="no">NO</label>
+                        <input type="radio" name="{{producto[0]}}" id="principal" value="1" form="destacados">
+                        <label for="principal">PRINCIPAL</label>
+                        <input type="radio" name="{{producto[0]}}" id="secundario" value="2" form="destacados">
+                        <label for="secundario">SECUNDARIO</label>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr><form action="destacados" method="POST" id="destacados"><input type="submit" value="Enviar"></tr></form>
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

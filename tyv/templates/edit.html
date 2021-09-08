@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block titulo %}
+Editar producto
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+EDITAR PRODUCTO
+{% endblock %}
+
+
+{% block header2 %}
+{{producto[1]}}
+{% endblock %}
+
+{% block main %}
+<div>
+    <form action="/cargaP" method="post"  enctype="multipart/form-data">
+        <h2>Agregar producto</h2>
+        <div>
+            <label for="nombre">NOMBRE: </label>
+            <input type="text" name="nombre" id="" value="{{producto[1]}}">
+        </div>
+        <div>
+            <label for="descripcion">DESCRIPCIÓN: </label>
+            <textarea name="descripcion" id="" cols="30" rows="10" value="{{producto[2]}}"></textarea>
+        </div>
+        <div>
+            <label for="precio">PRECIO</label>
+            <input type="number" name="precio" id="" value="{{producto[3]}}">
+        </div>
+        <div>
+            <label for="foto">FOTO: </label>
+            <input type="file" name="foto" id="">
+        </div>
+        <div>
+            <label for="stock">STOCK: </label>
+            <input type="number" name="stock" id="" value="{{producto[6]}}">
+        </div>
+        <div>
+            <label for="categoria">CATEGORIA: </label>
+            <input list="categorias" name="categoria" value="{{producto[4]}}">
+            <datalist>
+                <!-- <option  value="{{producto[4]}}"></option> -->
+                {% for categoria in categorias %}
+                <option value="{{categoria[1]}}">
+                    {% endfor %}
+            </datalist>
+        </div>
+        <div>
+            <label for="descripcionC">Descripcion de la categoria</label>
+            <textarea name="descripcionC" id="descripcionC" cols="30" rows="10" placeholder="Completar solo si se esta creando una nueva categoria"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Cargar producto">
+        </div>
+    </form>
+</div>
+{% endblock %}

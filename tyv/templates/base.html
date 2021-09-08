@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}
+        {% endblock %}</title>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <h1>
+            {% block header %}
+            {% endblock %}
+        </h1>
+        <div>
+            {% block header2 %}
+            {% endblock %}
+        </div>
+    </header>
+    <Nav>
+        <span">
+            <a href="/" ><button>INICIO</button></a>
+        </span>
+
+        <span>
+            <a href="/productos/todos" > <button>PRODUCTOS</button></a>
+        </span>
+
+        {% if "username" in session %}
+        <span>
+            <a href="/logout"><button>Cerrar sesión</button></a>
+        </span>
+        <span>
+            <a href="/admin"><button>Administrar</button></a>
+        </span>
+        {% endif %}
+    </Nav>
+    <hr class="linea">
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+    <footer>
+    </footer>
+</body>
+</div>
+
+</html>

@@ -1,0 +1,21 @@
+usuarios: 
+    /* 0 */`username` VARCHAR(16) NOT NULL ,
+    /* 1 */`password` VARCHAR(16) NOT NULL,
+    PRIMARY KEY (`username`);
+
+categorias:
+    /* 0 */`id`INT(10) NOT NULL AUTO_INCREMENT,
+    /* 1 */`nombre` VARCHAR(32) NOT NULL,
+    /* 2 */`descripcion` VARCHAR(500) NOT NULL,
+    PRIMARY_KEY(`id`)
+
+productos:
+    /* 0 */`id`INT(10)NOT NULL AUTO_INCREMENT,
+    /* 1 */`nombre` VARCHAR(50) NOT NULL,
+    /* 2 */`descripcion` VARCHAR(500) NOT NULL,
+    /* 3 */`precio` FLOAT(10) NOT NULL ,
+    /* 4 */`categoria` VARCHAR(500) NOT NULL ,
+    /* 5 */`foto` VARCHAR(500) NOT NULL ,
+    /* 6 */`stock` INT(5) NOT NULL ,
+    /* 7 */`destacado` INT(1) NOT NULL,
+    PRIMARY KEY(`id`))")

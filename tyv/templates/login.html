@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+    {% block titulo %}
+        Login
+    {% endblock %}
+
+    {% block head %}
+    LOGIN
+    {% endblock %}
+
+    {% block header %}
+    
+    {% endblock %}
+
+
+    {% block header2 %}
+    
+    {% endblock %}
+
+    {% block main %}
+    <div>
+        <form action="/validacion" method="post">
+            <label for="username">Nombre de usuario: </label>
+            <input type="text" name="username" id="username">
+            <label for="password">Contraseña</label>
+            <input type="password" name="pasword" id="password">
+            <input type="submit" value="enviar">
+        </form>
+    </div>
+    {% endblock %}
