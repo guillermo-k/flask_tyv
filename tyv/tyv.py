@@ -153,19 +153,10 @@ def destacados():
         productos=cursor.fetchall()
         for producto in productos:
             id=str(producto[0])
-            print("-----------------------------")
-            print(id)
-            print("-----------------------------")
             destacado=request.form[id]
-            print("-----------------------------")
-            print(destacado)
-            print("-----------------------------")
             if destacado!="":
                 datos=(destacado,producto[0])
-                # datos=(producto[0])
                 cursor.execute("UPDATE `tyv`.`productos` SET `destacado`= %s WHERE `productos`.`id`=%s",datos)
-                # cursor.execute("UPDATE `tyv`.`productos` SET `destacado` = '1' WHERE `productos`.`id` = 1")
-                print('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
         conn.commit()
         flash('Destacados cargado con exito')
         return redirect('/admin')
