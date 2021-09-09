@@ -84,13 +84,20 @@ def validacion():
     cursor.execute(sql,username)
     usuario=cursor.fetchone()
     conn.commit()
-    if usuario!='' and password==usuario[0][0]:
+    if usuario !='' and password==usuario[1]:
+        print(usuario)
         session['username']='username'
         flash("Registro exitoso")
     else:
+        print("salio por else")
         flash('Nombre de usuario o contraseña erroneo. Intente nuevamente')
         return redirect('/login')
     return redirect('/admin')
+
+@app.route('/logout')
+def logout():
+   session.pop("username", None)
+   return redirect("/")
 
 @app.route('/admin')
 def admin():
@@ -152,11 +159,14 @@ def destacados():
         cursor.execute("SELECT `id` FROM `tyv`.`productos`")
         productos=cursor.fetchall()
         for producto in productos:
-            id=str(producto[0])
-            destacado=request.form[id]
-            if destacado!="":
-                datos=(destacado,producto[0])
-                cursor.execute("UPDATE `tyv`.`productos` SET `destacado`= %s WHERE `productos`.`id`=%s",datos)
+            try:
+                id=str(producto[0])
+                destacado=request.form[id]
+                if destacado!="":
+                    datos=(destacado,producto[0])
+                    cursor.execute("UPDATE `tyv`.`productos` SET `destacado`= %s WHERE `productos`.`id`=%s",datos)
+            except:
+                pass
         conn.commit()
         flash('Destacados cargado con exito')
         return redirect('/admin')
@@ -169,10 +179,10 @@ def destroy(id):
     if "username" in session: # Si es usuario registrado
         conn = mysql.connect() # Realiza la conexión mysql.init_app(app)
         cursor = conn.cursor() # Almacenaremos lo que ejecutamos
-        cursor.execute("SELECT foto FROM `tyv`.`productos` WHERE id_producto=%s",id) # Buscamos la foto
+        cursor.execute("SELECT foto FROM `tyv`.`productos` WHERE id=%s",id) # Buscamos la foto
         fila= cursor.fetchall() # Traemos toda la información
         os.remove(os.path.join(app.config['CARPETA'], fila[0][0])) # Elimina la foto de la carpeta
-        cursor.execute("DELETE FROM `tyv`.`productos` WHERE id_producto=%s", (id)) # Eliminamos el producto de la DB por su ID
+        cursor.execute("DELETE FROM `tyv`.`productos` WHERE id=%s", (id)) # Eliminamos el producto de la DB por su ID
         conn.commit() # Cerramos la conexión
         flash("Producto eliminado")
         return redirect('/admin') # Volvemos a la pagina de administración de DB
